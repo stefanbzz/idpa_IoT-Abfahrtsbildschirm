@@ -4,11 +4,11 @@ using System.Diagnostics;
 
 namespace idpa_IoT_Abfahrtsbildschirm.Controllers
 {
-    public class HomeController : Controller
+    public class ConnectionsController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<ConnectionsController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public ConnectionsController(ILogger<ConnectionsController> logger)
         {
             _logger = logger;
         }
@@ -18,13 +18,7 @@ namespace idpa_IoT_Abfahrtsbildschirm.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult GetConnections(string stop, int limit, int interval)
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
