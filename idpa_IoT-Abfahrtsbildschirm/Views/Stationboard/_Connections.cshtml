@@ -1,0 +1,34 @@
+﻿@using System.Collections.Generic
+@using idpa_IoT_Abfahrtsbildschirm.Models
+@model IEnumerable<Connection>
+
+@if (Model != null)
+{
+    <table id="connections-table">
+        <thead>
+            <tr>
+                <th>Linie</th>
+                <th>Ziel</th>
+                <th>Kante/Perron</th>
+                <th>Abfahrt</th>
+                <th>Hinweis</th>
+            </tr>
+        </thead>
+        <tbody id="connections-tbody">
+            @foreach (var connection in Model)
+            {
+                <tr>
+                    <td>@connection.Line</td>
+                    <td>@connection.Terminal.Name</td>
+                    <td>@connection.Track</td>
+                    <td>@connection.Time.ToString("HH:mm")</td>
+                    <td>@connection.DepDelay</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p> Keine Verbindungen gefunden</p>
+}
