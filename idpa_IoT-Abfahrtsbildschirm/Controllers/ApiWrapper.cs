@@ -1,9 +1,10 @@
-﻿using idpa_IoT_Abfahrtsbildschirm.Models;
+﻿using idpa_IoT_Abfahrtsbildschirm.Interfaces;
+using idpa_IoT_Abfahrtsbildschirm.Models;
 using Newtonsoft.Json.Linq;
 
 namespace idpa_IoT_Abfahrtsbildschirm.Controllers
 {
-    public class ApiWrapper
+    public class ApiWrapper : IApiWrapper
     {
         private readonly string baseUrl = "https://timetable.search.ch/api/";
 
