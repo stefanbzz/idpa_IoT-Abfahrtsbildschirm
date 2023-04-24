@@ -9,7 +9,7 @@
             public string TypeName { get; set; }
             public Terminal Terminal { get; set; }
             public string Track { get; set; }
-            public string DepDelay { get; set; }
+            public string Dep_Delay { get; set; }
             public int Interval { get; set; }
     }
 }
