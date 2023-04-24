@@ -4,9 +4,11 @@
 
 @if (Model != null)
 {
+    <h1>@ViewBag.Stop</h1>
     <table id="connections-table">
         <thead>
             <tr>
+                <th></th>
                 <th>Linie</th>
                 <th>Ziel</th>
                 <th>Kante/Perron</th>
@@ -18,11 +20,39 @@
             @foreach (var connection in Model)
             {
                 <tr>
+                    @switch (connection.Type)
+                    {
+                        case "night_bus":
+                        case "bus":
+                            <td><img src="img/Bus_r.svg" height="90" width="90" /></td>
+                            break;
+                        case "express_train":
+                        case "night_strain":
+                        case "strain":
+                            <td><img src="img/Zug.svg" height="90" width="90"/></td>
+                            break;
+                        case "tram":
+                            <td><img src="img/Tram.svg" height="90" width="90" /></td>
+                            break;
+                        case "ship":
+                            <td><img src="img/Schiff.svg" height="90" width="90" /></td>
+                            break;
+                        default:
+                            <td></td>
+                            break;
+                    }
                     <td>@connection.Line</td>
                     <td>@connection.Terminal.Name</td>
                     <td>@connection.Track</td>
                     <td>@connection.Time.ToString("HH:mm")</td>
-                    <td>@connection.DepDelay</td>
+                    @if(connection.Dep_Delay == "+0" || connection.Dep_Delay == null)
+                    {
+                        <td></td>
+                    }
+                    else
+                    {
+                        <td>@connection.Dep_Delay'</td>
+                    }
                 </tr>
             }
         </tbody>
@@ -30,5 +60,5 @@
 }
 else
 {
-    <p> Keine Verbindungen gefunden</p>
+    <p> Keine Verbindungen gefunden.<br> Um neue Verbindungen anzuzeigen, drücken Sie "ctrl + B".</p>
 }

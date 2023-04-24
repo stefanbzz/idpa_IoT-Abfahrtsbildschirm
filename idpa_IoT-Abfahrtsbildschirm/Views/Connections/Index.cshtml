@@ -1,17 +1,29 @@
 ﻿@{
 }
-<form method="get" action="@Url.Action()">
-    <label for="stop">Stop:</label>
-    <input type="text" name="stop" id="stop" required>
-    <br>
-    <label for="limit">Limit:</label>
-    <input type="number" name="limit" id="limit" value="2" required>
-    <br>
-    <label for="interval">Refresh interval (seconds):</label>
-    <input type="number" name="interval" id="interval" value="60" required>
-    <br>
-    <button type="submit">Show Connections</button>
-</form>
+<div id="graybackground">
+    <div id="settings">
+        <h3>Einstellungen</h3>
+        <form method="get" action="@Url.Action()" class="form">
+            <label for="stop">Bahnhof</label>
+            <input type="text" name="stop" id="stop" required>
+
+            <label for="interval">Aktualisierungsintervall</label>
+            <div class="interval">
+                <input type="number" name="interval" id="interval" value="" required>
+                <p>Sekunden</p>
+                <button onclick="setIntervalValue(5)" type="button">5</button>
+                <button onclick="setIntervalValue(15)" type="button">15</button>
+                <button onclick="setIntervalValue(30)" type="button">30</button>
+            </div>
+            <label for="limit">Anzahl Resultate</label>
+            <input type="number" name="limit" id="limit" value="5" required>
+            <div class="buttons">
+                <button id="close-Btn" type="reset">Abbrechen</button>
+                <button id="submit" type="submit">Speichern</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 <div id="information"></div>
 
@@ -20,6 +32,13 @@
     <script>
         $(function () {
             let params = new URLSearchParams(location.search);
+            $.ajax({
+                url: '@Url.Action("GetConnections")',
+                data: { stop: params.get('stop'), limit: params.get('limit') },
+                success: function (result) {
+                    $('#information').html(result);
+                }
+            });
             if(params.get('interval') > 0){
                 setInterval(function () {
                     $.ajax({
@@ -33,5 +52,20 @@
             }
         });
 
+        $(document).keydown(function (e) {
+            if (e.ctrlKey && e.key === 'b') {
+                // Show the div container
+                $('#graybackground').show();
+            }
+        });
+
+        $('#close-Btn').on('click', function () {
+            // Hide the div container
+            $('#graybackground').hide();
+        });
+
+        function setIntervalValue(interval) {
+            document.getElementById("interval").value = interval;
+        }
     </script>
 }
