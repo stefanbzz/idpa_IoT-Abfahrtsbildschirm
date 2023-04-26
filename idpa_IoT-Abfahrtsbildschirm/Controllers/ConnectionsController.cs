@@ -6,11 +6,11 @@ namespace idpa_IoT_Abfahrtsbildschirm.Controllers
 {
     public class ConnectionsController : Controller
     {
-        private readonly ILogger<ConnectionsController> _logger;
+        private readonly ApiWrapper apiWrapper;
 
-        public ConnectionsController(ILogger<ConnectionsController> logger)
+        public ConnectionsController(ApiWrapper apiWrapper)
         {
-            _logger = logger;
+            this.apiWrapper = apiWrapper;
         }
 
         public IActionResult Index()
@@ -18,9 +18,14 @@ namespace idpa_IoT_Abfahrtsbildschirm.Controllers
             return View();
         }
 
-        public IActionResult GetConnections(string stop, int limit, int interval)
+        public async Task<IActionResult> GetConnections(string stop, int limit = 0)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var connections = await apiWrapper.GetConnections(stop, limit);
+
+            ViewBag.Stop =  stop;
+            ViewBag.Limit = limit;
+
+            return PartialView("_Connections", connections);
         }
     }
 }

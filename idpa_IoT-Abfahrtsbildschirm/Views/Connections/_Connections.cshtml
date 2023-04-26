@@ -1,0 +1,58 @@
+﻿@using System.Collections.Generic
+@using idpa_IoT_Abfahrtsbildschirm.Models
+@using idpa_IoT_Abfahrtsbildschirm.App_Code
+@model IEnumerable<Connection>
+
+
+@if (Model != null)
+{
+    <div class="maincontent">
+        <div class="clock">
+            <div class="clock-face clock-component">
+                <div id="hrMarkers" class="hr-markers">
+                </div>
+                <div id="minMarkers" class="min-markers">
+                </div>
+            </div>
+            <div class="clock-hands clock-component">
+                <div id="hr-hand" class="hand hr-hand"></div>
+                <div id="min-hand" class="hand min-hand"></div>
+                <div id="sec-hand" class="hand sec-hand">
+                    <div class="sec-hand-ball"></div>
+                </div>
+            </div>
+            <div class="pin clock-component"></div>
+        </div>
+        <h1>@ViewBag.Stop</h1>
+        <table id="connections-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Linie</th>
+                    <th>Ziel</th>
+                    <th>Kante/Perron</th>
+                    <th>Abfahrt</th>
+                    <th>Hinweis</th>
+                </tr>
+            </thead>
+            <tbody id="connections-tbody" class="@(Model.Count() > 6 ? "longtable" : "")">
+                @foreach (var connection in ConnectionHelper.RemoveConnections(Model, ViewBag.Limit))
+                {
+                    <tr>
+                        <td><img src="@ConnectionHelper.GetConnectionImage(connection.Type)" class="connection-image" /></td>
+                        <td>@connection.Line</td>
+                        <td>@connection.Terminal.Name</td>
+                        <td>@connection.Track</td>
+                        <td>@connection.Time.ToString("HH:mm")</td>
+                        <td>@ConnectionHelper.GetConnectionNotice(connection)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <p> Keine Verbindungen gefunden.<br> Um neue Verbindungen anzuzeigen, drücken Sie "ctrl + B".</p>
+}
+<script src="~/js/site.js"></script>
