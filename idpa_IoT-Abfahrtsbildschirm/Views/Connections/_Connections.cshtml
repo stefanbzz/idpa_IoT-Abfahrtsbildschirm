@@ -1,6 +1,8 @@
 ﻿@using System.Collections.Generic
 @using idpa_IoT_Abfahrtsbildschirm.Models
+@using idpa_IoT_Abfahrtsbildschirm.App_Code
 @model IEnumerable<Connection>
+
 
 @if (Model != null)
 {
@@ -21,61 +23,36 @@
             </div>
             <div class="pin clock-component"></div>
         </div>
-    <h1>@ViewBag.Stop</h1>
-    <table id="connections-table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Linie</th>
-                <th>Ziel</th>
-                <th>Kante/Perron</th>
-                <th>Abfahrt</th>
-                <th>Hinweis</th>
-            </tr>
-        </thead>
-        <tbody id="connections-tbody">
-            @foreach (var connection in Model)
-            {
+        <h1>@ViewBag.Stop</h1>
+        <table id="connections-table">
+            <thead>
                 <tr>
-                    @switch (connection.Type)
-                    {
-                        case "night_bus":
-                        case "bus":
-                            <td><img src="img/Bus_r.svg" height="90" width="90" /></td>
-                            break;
-                        case "express_train":
-                        case "night_strain":
-                        case "strain":
-                            <td><img src="img/Zug.svg" height="90" width="90"/></td>
-                            break;
-                        case "tram":
-                            <td><img src="img/Tram.svg" height="90" width="90" /></td>
-                            break;
-                        case "ship":
-                            <td><img src="img/Schiff.svg" height="90" width="90" /></td>
-                            break;
-                        default:
-                            <td></td>
-                            break;
-                    }
-                    <td>@connection.Line</td>
-                    <td>@connection.Terminal.Name</td>
-                    <td>@connection.Track</td>
-                    <td>@connection.Time.ToString("HH:mm")</td>
-                    @if(connection.Dep_Delay == "+0" || connection.Dep_Delay == null)
-                    {
-                        <td></td>
-                    }
-                    else
-                    {
-                        <td>@connection.Dep_Delay'</td>
-                    }
+                    <th></th>
+                    <th>Linie</th>
+                    <th>Ziel</th>
+                    <th>Kante/Perron</th>
+                    <th>Abfahrt</th>
+                    <th>Hinweis</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody id="connections-tbody" class="@(Model.Count() > 6 ? "longtable" : "")">
+                @foreach (var connection in ConnectionHelper.RemoveConnections(Model, ViewBag.Limit))
+                {
+                    <tr>
+                        <td><img src="@ConnectionHelper.GetConnectionImage(connection.Type)" class="connection-image" /></td>
+                        <td>@connection.Line</td>
+                        <td>@connection.Terminal.Name</td>
+                        <td>@connection.Track</td>
+                        <td>@connection.Time.ToString("HH:mm")</td>
+                        <td>@ConnectionHelper.GetConnectionNotice(connection)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
 else
 {
     <p> Keine Verbindungen gefunden.<br> Um neue Verbindungen anzuzeigen, drücken Sie "ctrl + B".</p>
 }
+<script src="~/js/site.js"></script>

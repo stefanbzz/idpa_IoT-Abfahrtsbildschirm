@@ -5,11 +5,11 @@
         <h3>Einstellungen</h3>
         <form method="get" action="@Url.Action()" class="form">
             <label for="stop">Bahnhof</label>
-            <input type="text" name="stop" id="stop" required>
+            <input type="text" name="stop" id="stop" required autofocus/>
 
             <label for="interval">Aktualisierungsintervall</label>
             <div class="interval">
-                <input type="number" name="interval" id="interval" value="" required>
+                <input type="number" name="interval" id="interval" value="60" required>
                 <p>Sekunden</p>
                 <button onclick="setIntervalValue(5)" type="button">5</button>
                 <button onclick="setIntervalValue(15)" type="button">15</button>

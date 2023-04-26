@@ -18,11 +18,12 @@ namespace idpa_IoT_Abfahrtsbildschirm.Controllers
             return View();
         }
 
-        public async Task<IActionResult> GetConnections(string stop, int limit = 0, int interval = 5)
+        public async Task<IActionResult> GetConnections(string stop, int limit = 0)
         {
             var connections = await apiWrapper.GetConnections(stop, limit);
 
             ViewBag.Stop =  stop;
+            ViewBag.Limit = limit;
 
             return PartialView("_Connections", connections);
         }
