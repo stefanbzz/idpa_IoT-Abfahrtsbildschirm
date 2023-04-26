@@ -4,6 +4,23 @@
 
 @if (Model != null)
 {
+    <div class="maincontent">
+        <div class="clock">
+            <div class="clock-face clock-component">
+                <div id="hrMarkers" class="hr-markers">
+                </div>
+                <div id="minMarkers" class="min-markers">
+                </div>
+            </div>
+            <div class="clock-hands clock-component">
+                <div id="hr-hand" class="hand hr-hand"></div>
+                <div id="min-hand" class="hand min-hand"></div>
+                <div id="sec-hand" class="hand sec-hand">
+                    <div class="sec-hand-ball"></div>
+                </div>
+            </div>
+            <div class="pin clock-component"></div>
+        </div>
     <h1>@ViewBag.Stop</h1>
     <table id="connections-table">
         <thead>
