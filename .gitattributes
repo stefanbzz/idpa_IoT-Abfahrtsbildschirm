@@ -2,7 +2,6 @@
 # Set default behavior to automatically normalize line endings.
 ###############################################################################
 * text=auto
-
 idpa_IoT-Abfahrtsbildschirm/wwwroot/lib/** linguist-vendored
 idpa_IoT-Abfahrtsbildschirm/wwwroot/js/jquery/** linguist-vendored
 
