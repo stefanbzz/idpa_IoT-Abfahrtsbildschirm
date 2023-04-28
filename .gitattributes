@@ -2,7 +2,8 @@
 # Set default behavior to automatically normalize line endings.
 ###############################################################################
 * text=auto
-
+idpa_IoT-Abfahrtsbildschirm/idpa_IoT-Abfahrtsbildschirm/wwwroot/lib/** linguist-vendored
+idpa_IoT-Abfahrtsbildschirm/idpa_IoT-Abfahrtsbildschirm/wwwroot/js/jquery/** linguist-vendored
 ###############################################################################
 # Set default behavior for command prompt diff.
 #
