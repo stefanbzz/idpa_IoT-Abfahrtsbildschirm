@@ -3,6 +3,8 @@
 ###############################################################################
 * text=auto
 idpa_IoT-Abfahrtsbildschirm/idpa_IoT-Abfahrtsbildschirm/wwwroot/lib/** linguist-vendored
+idpa_IoT-Abfahrtsbildschirm/idpa_IoT-Abfahrtsbildschirm/wwwroot/lib/bootstrap/dist/js/* linguist-vendored
+
 idpa_IoT-Abfahrtsbildschirm/idpa_IoT-Abfahrtsbildschirm/wwwroot/js/jquery/** linguist-vendored
 
 ###############################################################################
