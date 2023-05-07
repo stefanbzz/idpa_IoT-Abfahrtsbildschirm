@@ -4,6 +4,12 @@ namespace idpa_IoT_Abfahrtsbildschirm.App_Code
 {
     public class ConnectionHelper
     {
+        public static int CountConnections(IEnumerable<Connection> connections, int limit)
+        {
+
+            return RemoveConnections(connections, limit).Count();
+        }
+
         public static string GetConnectionImage(string connectionType)
         {
             switch (connectionType)

@@ -32,7 +32,8 @@
                     <th>Hinweis</th>
                 </tr>
             </thead>
-            <tbody id="connections-tbody" class="@(Model.Count() > 6 ? "longtable" : "")">
+            <tbody id="connections-tbody" class="@(ConnectionHelper.CountConnections(Model, ViewBag.Limit) > 5 ? "longtable" : "")">
+                @* Iterates through the connections in the Model. *@
                 @foreach (var connection in ConnectionHelper.RemoveConnections(Model, ViewBag.Limit))
                 {
                     <tr>
