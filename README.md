@@ -1,6 +1,11 @@
 # idpa_IoT-Abfahrtsbildschirm
 
 Dieses Projekt wurde für die IDPA erstellt. Es handelt sich um einen Zugfahrplan für Schulen und Unternehmen.  
+Die Website sieht wie folgt aus.
+
+![Unbenannt](https://user-images.githubusercontent.com/78475321/236708276-91724356-4f92-45d5-b540-ab0fec933cf9.png)
+
+
 
 ## Vorbedingungen
 
