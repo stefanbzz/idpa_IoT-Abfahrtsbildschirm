@@ -1,4 +1,12 @@
-﻿namespace idpa_IoT_Abfahrtsbildschirm.Models
+﻿/*
+ * Connection Class according to the API
+ * 
+ * Author: Stefan Thomsen
+ * Date: 07.05.2023
+ * Version: 1.0
+ * 
+ */
+namespace idpa_IoT_Abfahrtsbildschirm.Models
 {
     public class Connection
     {

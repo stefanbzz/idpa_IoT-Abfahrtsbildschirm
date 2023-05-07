@@ -1,22 +1,22 @@
 ﻿@{
 }
+@* Settings Layout*@
 <div id="graybackground">
     <div id="settings">
         <h3>Einstellungen</h3>
         <form method="get" action="@Url.Action()" class="form">
             <label for="stop">Bahnhof</label>
             <input type="text" name="stop" id="stop" required autofocus/>
-
             <label for="interval">Aktualisierungsintervall</label>
             <div class="interval">
-                <input type="number" name="interval" id="interval" value="60" required>
+                <input type="number" name="interval" id="interval" value="60" min="3" required>
                 <p>Sekunden</p>
                 <button onclick="setIntervalValue(5)" type="button">5</button>
                 <button onclick="setIntervalValue(15)" type="button">15</button>
                 <button onclick="setIntervalValue(30)" type="button">30</button>
             </div>
             <label for="limit">Anzahl Resultate</label>
-            <input type="number" name="limit" id="limit" value="5" required>
+            <input type="number" name="limit" id="limit" value="5" min="5" max="10" required>
             <div class="buttons">
                 <button id="close-Btn" type="reset">Abbrechen</button>
                 <button id="submit" type="submit">Speichern</button>
@@ -32,7 +32,9 @@
     <script>
         $(function () {
             let params = new URLSearchParams(location.search);
+            // This AJAX request is required because the first request will not be sent until the interval timer has expired.
             $.ajax({
+                // This method requests the URL from the method in the APIWrapper.
                 url: '@Url.Action("GetConnections")',
                 data: { stop: params.get('stop'), limit: params.get('limit') },
                 success: function (result) {
@@ -52,8 +54,9 @@
             }
         });
 
+        // The shortcut alt + n shows the settings container.
         $(document).keydown(function (e) {
-            if (e.ctrlKey && e.key === 'b') {
+            if (e.altKey && e.key === 'n') {
                 // Show the div container
                 $('#graybackground').show();
             }
@@ -63,7 +66,8 @@
             // Hide the div container
             $('#graybackground').hide();
         });
-
+        
+        // for the buttons in the settings container
         function setIntervalValue(interval) {
             document.getElementById("interval").value = interval;
         }

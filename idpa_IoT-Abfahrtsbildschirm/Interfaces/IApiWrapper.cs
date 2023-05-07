@@ -1,11 +1,19 @@
-﻿using idpa_IoT_Abfahrtsbildschirm.Models;
+﻿/*
+ * Wrapper library
+ * 
+ * Author: Stefan Thomsen
+ * Date: 07.05.2023
+ * Version: 1.0
+ * 
+ */
+using idpa_IoT_Abfahrtsbildschirm.Models;
 
 namespace idpa_IoT_Abfahrtsbildschirm.Interfaces
 {
     public interface IApiWrapper
     {
         /// <summary>
-        /// Displays the Data from Search.ch with some of the optional parameters always on.
+        /// Display the Data from Search.ch with some of the optional parameters always on.
         /// </summary>
         /// <param name="stop"></param>
         /// <param name="limit"></param>
