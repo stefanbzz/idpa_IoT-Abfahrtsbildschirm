@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<Connection>
 
-
+@* The Model contains the IEnumerable<Connection> data from the Controller.
+   If there is no data, it will give you a tip on how to add a new connection.
+*@
 @if (Model != null)
 {
     <div class="maincontent">
@@ -10,7 +12,7 @@
                 </div>
                 <div id="minMarkers" class="min-markers">
                 </div>
-            </div>
+            </div>  
             <div class="clock-hands clock-component">
                 <div id="hr-hand" class="hand hr-hand"></div>
                 <div id="min-hand" class="hand min-hand"></div>
@@ -20,7 +22,8 @@
             </div>
             <div class="pin clock-component"></div>
         </div>
-        <h1>@ViewBag.Stop</h1>
+        @* The CSS class capitalise-first makes the value of Viewbag.Stop capitalised.*@
+        <h1 class="capitalize-first">@ViewBag.Stop</h1>
         <table id="connections-table">
             <thead>
                 <tr>
@@ -33,11 +36,11 @@
                 </tr>
             </thead>
             <tbody id="connections-tbody" class="@(ConnectionHelper.CountConnections(Model, ViewBag.Limit) > 5 ? "longtable" : "")">
-                @* Iterates through the connections in the Model. *@
+                @* Iterate through the connections in the Model. *@
                 @foreach (var connection in ConnectionHelper.RemoveConnections(Model, ViewBag.Limit))
                 {
                     <tr>
-                        <td><img src="@ConnectionHelper.GetConnectionImage(connection.Type)" class="connection-image" /></td>
+                        <td><img src="@ConnectionHelper.GetConnectionImage(connection.Type)" class="connection-image"/></td>
                         <td>@connection.Line</td>
                         <td>@connection.Terminal.Name</td>
                         <td>@connection.Track</td>

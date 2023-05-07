@@ -32,6 +32,14 @@ h1 {
     }
 }
 
+.capitalize-first {
+    text-transform: lowercase;
+}
+
+    .capitalize-first::first-letter {
+        text-transform: uppercase;
+    }
+
 #information {
 padding: 2rem 2rem 0 2rem;
 
@@ -91,6 +99,7 @@ th:nth-child(6) {
 td:nth-child(6) {
     color: yellow;
     padding-left: 2rem;
+    font-size: 1.5em;
 }
 
 #graybackground {

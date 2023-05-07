@@ -3,6 +3,8 @@
 
 // Write your JavaScript code.
 
+//Mondaine Clock
+//Source https://codepen.io/spencergevans/pen/BrZgMv
 var hrTrans = 'translate(-50%, 16px)';
 var minTrans = 'translate(-50%, 16px)';
 var secTrans = 'translate(-50%, 20px)';
